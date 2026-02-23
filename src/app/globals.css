@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9fbfc;
+  --foreground: #171717;
+}
+
+
+
+body {
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+  .Dashbord-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    width: 100%;
+    height: 100vh;
+    position: static;
+    padding: 15px;
+    border-right: none;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+}
+
+.Dashbord-wrap {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.Reports-wrap {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 0;
+
+}
+
+.Setting-wrap {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+/* ── Dark Theme ── */
+[data-theme="dark"] {
+  --background: #121218;
+  --foreground: #e2e2e8;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+[data-theme="dark"] nav {
+  background-color: #16161e;
+  border-right-color: #2a2a34;
+}
+
+[data-theme="dark"] nav .Navigasi button {
+  color: #ccc;
+}
+
+[data-theme="dark"] .Link .active {
+  background-color: #3b3b4f;
+  color: #fff;
+}
+
+[data-theme="dark"] .Navigasi .normal:hover {
+  background-color: #2a2a36;
+}
+
+[data-theme="dark"] nav .Navigasi span {
+  background-color: #1e1e2a;
+  color: #ccc;
+}
+
+nav {
+  background-color: white;
+  width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 2px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+nav .Tittle {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+nav .Tittle h1 {
+  font-size: 1.6rem;
+}
+
+nav .Navigasi {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 12px;
+}
+
+nav .Navigasi .Link {
+  width: 34vh;
+  height: 6vh;
+}
+
+nav .Navigasi span {
+  width: 100%;
+  height: 10dvh;
+  border-radius: 12px;
+  margin-top: 200px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: rgb(231, 234, 255);
+}
+
+nav .Navigasi button {
+  width: 100%;
+  height: 6vh;
+  border-radius: 12px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.Navigasi .normal:hover {
+  background-color: rgb(203, 206, 214);
+  /* Warna saat di-hover */
+}
+
+
+.Link .active {
+  background-color: #363636;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+
+
+/* Konten dashboard akan otomatis teratur oleh grid */
+
+
+.tab-container {
+  display: flex;
+  background: #f2f2f2;
+  border-radius: 999px;
+  padding: 4px;
+  width: 450px;
+  border: solid 3px black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1)
+}
+
+.tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.tab.active {
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

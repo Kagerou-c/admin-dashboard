@@ -1,0 +1,62 @@
+.Login-Component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.25rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Login-From {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.Login-From input {
+  border-radius: 10px;
+  border: solid 3px black;
+  width: 450px;
+  height: 45px
+}
+
+.Login-From input::placeholder {
+  padding-left: 10px;
+}
+
+.Login-From span {
+  margin-top: 8px;
+  align-self: flex-start;
+  margin-left: 10px
+}
+
+.Login-From button {
+  margin-top: 8px;
+  width: 450px;
+  height: 55px;
+  border-radius: 16px;
+  border: solid 3px black;
+}
+
+.Login-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 16px;
+  border: solid 3px black;
+  background-color: rgb(241, 237, 229);
+}
+
+.Login-wrap h1 {
+  margin-bottom: 0%;
+  font-size: 2rem;
+}
+
+.Login-wrap p {
+  margin-bottom: 20px;
+}
