@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect, useContext } from "react";
 import { createContext } from "react";
-import Login from "./reg and log/log";
-import Register from "./reg and log/reg";
+import Login from "./auth/log";
+import Register from "./auth/reg";
 
 export default function () {
   const [isLogin, setIsLogin] = useState(true);

@@ -289,8 +289,8 @@
 }
 
 [data-theme="dark"] .setting-card {
-    background: #1a1a22;
-    border-color: #2a2a34;
+    background: #1a1a24;
+    border-color: #2a2a36;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -307,8 +307,8 @@
 }
 
 [data-theme="dark"] .form-group input {
-    background: #222230;
-    border-color: #333340;
+    background: #22222e;
+    border-color: #2a2a36;
     color: #e0e0ea;
 }
 
@@ -323,7 +323,7 @@
 }
 
 [data-theme="dark"] .notif-item {
-    border-bottom-color: #2a2a34;
+    border-bottom-color: #2a2a36;
 }
 
 [data-theme="dark"] .notif-item h3 {
@@ -339,8 +339,8 @@
 }
 
 [data-theme="dark"] .theme-card {
-    background: #1e1e28;
-    border-color: #2a2a34;
+    background: #22222e;
+    border-color: #2a2a36;
     color: #ddd;
 }
 

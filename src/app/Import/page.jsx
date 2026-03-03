@@ -1,19 +1,14 @@
-
+import Import from "./Import";
 import Navbar from "../components/nav";
 import { GetUser } from "../provider";
-import Chart from "./chart";
 
-export default function Pagechart() {
-
-
-
+export default function ImportPage() {
     return (
-        <div className='page-layout'>
+        <div className="page-layout">
             <GetUser>
                 <Navbar />
-                <Chart />
+                <Import />
             </GetUser>
         </div>
     )
-
 }

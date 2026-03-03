@@ -1,10 +1,10 @@
 import { GetUser } from '../provider';
-import Navbar from '../component/nav';
+import Navbar from '../components/nav';
 import SettingPage from './setting';
 
 export default function Setting() {
     return (
-        <div className='Setting-wrap'>
+        <div className='page-layout'>
             <GetUser>
                 <Navbar />
                 <SettingPage />

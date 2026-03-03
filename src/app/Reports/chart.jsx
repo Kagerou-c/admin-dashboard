@@ -1,14 +1,14 @@
 'use client'
 
-import { chartData } from "../process/processChartData";
-import { AmbilData } from "../server/data server";
-import RevenueChart from "./bar chart";
-import DoughnutChart from "./doughnut chart";
-import LineChart from "./line chart";
+import { chartData } from "../process/process-chart-data";
+import { AmbilData } from "../server/data-server";
+import RevenueChart from "./bar-chart";
+import DoughnutChart from "./doughnut-chart";
+import LineChart from "./line-chart";
 import { useEffect, useState } from "react";
 import { UsersRound, Wallet, Book } from "lucide-react";
-import card from "../component/card";
-import LoadingComponent from "../motion component/loading";
+import card from "../components/card";
+import LoadingComponent from "../motion-component/loading";
 import '../chart.css'
 
 export default function Chart() {
@@ -36,7 +36,6 @@ export default function Chart() {
         return <LoadingComponent />;
 
     const { dataUser, dataPenghasilan, dataBuku, month, totalUser, totalPenghasilan, totalBuku, BulanPeningkatan, BulanPenurunan, rata_rata } = data
-    console.log(totalUser, totalPenghasilan, totalBuku, BulanPeningkatan, BulanPenurunan)
 
 
     return (

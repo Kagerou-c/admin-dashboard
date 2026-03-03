@@ -1,73 +1,29 @@
 'use client';
-import { ServerLogin } from "../server/server Login";
+import { ServerRegist } from "../server/server-regist";
 import { motion } from "framer-motion";
+import "../regist.css"
 
-import { useEffect } from "react";
-import { supabase } from "../lib/supabase config";
-import "../login.css"
+export default function Register({ setIsLogin }) {
 
-export default function Login({ setIsLogin }) {
-
-    async function handlerLog(e) {
+    async function handlerReg(e) {
         e.preventDefault()
-
+        const namaUser = e.target.name.value
         const emailUser = e.target.email.value
         const passwordUser = e.target.password.value
 
-        ServerLogin(emailUser, passwordUser)
+        ServerRegist(emailUser, passwordUser, namaUser)
     }
 
-    // function generate(){
-    //     let hasil = []
-
-    //     for(let i = 1; i <=30 ; i++){
-    //         const mathPenghasilan = Math.floor(Math.random()*600000)+100000
-    //         const mathUser = Math.floor(Math.random()*200)+76
-    //         const mathBuku = Math.floor(Math.random()*100)+30
-    //         hasil.push( {penghasilan : mathPenghasilan, UserBerkunjung : mathUser, BukuDiPinjam : mathBuku} )
-    //     }
-    //     return hasil
-    // }
-
-
-
-    useEffect(() => {
-
-        // const arr = generate()
-
-
-
-        // async function query(item) {
-
-
-        //     const { data, error } = await supabase
-        //         .from('Data Perbulan')
-        //         .insert([item])
-        //     if (error) {
-        //         console.error('Error inserting data:', error)
-        //     } else {
-        //         console.log('Data inserted:', data)
-        //     }
-        // }
-
-        //   arr.map((item, i)=>{
-
-        //     console.log(i)
-        //     query(item)})
-
-    }, [])
-
     return (
-
         <motion.div
-            className="Login-Component"
+            className="Regist-Component"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
         >
             <motion.div
-                className="Login-wrap"
+                className="Regist-wrap"
                 style={{ width: '500px' }}
                 initial={{ x: 100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -78,7 +34,7 @@ export default function Login({ setIsLogin }) {
                 <p>Sign in to your account or create a new one</p>
                 <div className="tab-container">
                     <motion.button
-                        className="tab active"
+                        className="tab"
                         onClick={() => setIsLogin(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -86,7 +42,7 @@ export default function Login({ setIsLogin }) {
                         Login
                     </motion.button>
                     <motion.button
-                        className="tab"
+                        className="tab active"
                         onClick={() => setIsLogin(false)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -94,7 +50,9 @@ export default function Login({ setIsLogin }) {
                         Register
                     </motion.button>
                 </div>
-                <form className="Login-From" onSubmit={handlerLog}>
+                <form className="Regist-From" onSubmit={handlerReg}>
+                    <span>Full name</span>
+                    <input name="name" type="text" placeholder="isi nama"></input>
                     <span>email</span>
                     <input name="email" type="email" placeholder="isi email"  ></input>
                     <span>password</span>
@@ -103,9 +61,8 @@ export default function Login({ setIsLogin }) {
                         type='submit'
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                    >sumbit</motion.button>
+                    >Register</motion.button>
                 </form>
-
             </motion.div>
         </motion.div>
     )

@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useAuth } from "../contex/useAuth"
-import { updateProfile } from "../server/server update-profile"
+import { useAuth } from "../context/use-auth"
+import { updateProfile } from "../server/server-update-profile"
 import { Save, Check, Moon, Sun, Monitor } from "lucide-react"
 import "../setting.css"
 
@@ -42,7 +42,7 @@ export default function SettingPage() {
         // Ambil tema dari penyimpanan
         const savedTheme = localStorage.getItem("admin_theme") || "light"
         setTheme(savedTheme)
-        
+
     }, [user])
 
     // Terapkan tema ke halaman

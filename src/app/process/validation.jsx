@@ -1,14 +1,13 @@
-export function validation(data) {
-    const result = data.reduce((acc, item) => {
+export function Validation(data) {
+    const result = data.reduce((acc, item, index) => {
         let isInvalid = false;
-
         if (!item.nama || item.nama.trim() === "") {
             isInvalid = true;
         }
         if (!item.kelas || item.kelas.trim() === "") {
             isInvalid = true;
         }
-        if (!item.status || item.status.trim() === "") {
+        if (!item.keperluan || item.keperluan.trim() === "") {
             isInvalid = true;
         }
         if (item.nominal === null || typeof item.nominal !== "number") {
@@ -18,6 +17,7 @@ export function validation(data) {
         if (isInvalid) {
             acc.invalid += 1;
             acc.invalidData.push(item);
+            acc.invalidIndices.push(index + 1); // 1-based index
         } else {
             acc.valid += 1;
         }
@@ -26,7 +26,8 @@ export function validation(data) {
     }, {
         valid: 0,
         invalid: 0,
-        invalidData: []
+        invalidData: [],
+        invalidIndices: []
     });
 
     return result;

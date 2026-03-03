@@ -1,4 +1,4 @@
-import DashboardAuthContex from "./contex/DashboardAuth";
+import DashboardAuthContex from "./context/dashboard-auth";
 import { redirect } from 'next/navigation';
 import { createClient } from "./lib/protection";
 
@@ -9,8 +9,8 @@ export async function GetUser({ children }) {
     if (!user || error) {
         redirect('/');
     }
-    
- 
+
+
 
     return (
         <DashboardAuthContex initialUser={user}>

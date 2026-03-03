@@ -13,12 +13,6 @@
 
 }
 
-/* 0deg,
-            #3d74ec 0%,
-
-            #9365e2 100% */
-
-
 .hero-section {
     width: 100%;
     display: flex;
@@ -97,12 +91,21 @@
     border-radius: 16px;
     background-color: white;
     transition: 0.3s;
+    cursor: pointer;
     width: 100%;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.data-wrap .data p:nth-child(3) {
+    margin-top: 8px;
+    font-size: 0.7rem;
+    color: rgb(131, 131, 131);
 }
 
 .data-wrap .data:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
 }
 
 .data-wrap .data span {
@@ -230,6 +233,25 @@
 }
 
 
+[data-theme="dark"] .data-wrap .data,
+[data-theme="dark"] .Quick-Fitur .Quick-Information,
+[data-theme="dark"] .Quick-Fitur .Quick-Action {
+    background: #1a1a24;
+    border-color: #2a2a36;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .Quick-Information>p,
+[data-theme="dark"] .Quick-Action>p,
+[data-theme="dark"] .Information span,
+[data-theme="dark"] .Information div p {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .Quick-Information h1,
+[data-theme="dark"] .Quick-Action h1 {
+    color: #e8e8f0;
+}
 
 [data-theme="dark"] .hero-section .Shortcut button:nth-child(2) {
     background: #252530;
@@ -240,27 +262,18 @@
     background: #424242;
 }
 
-[data-theme="dark"] .data-wrap .data {
-    background-color: #1a1a22;
-    border-color: #2a2a34;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+[data-theme="dark"] .data-wrap .data:hover {
+    box-shadow: 0 4px 12px rgba(133, 123, 123, 0.514);
 }
 
-[data-theme="dark"] .Quick-Fitur .Quick-Information {
-    background-color: #1a1a22;
-    border-color: #2a2a34;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+[data-theme="dark"] .Quick-Action .Action .Limk {
+    border-color: #2a2a36;
+    color: #e8e8f0;
 }
 
-[data-theme="dark"] .Quick-Fitur .Quick-Action {
-    background-color: #1a1a22;
-    border-color: #2a2a34;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .Quick-Action .Action button:hover {
+[data-theme="dark"] .Quick-Action .Action .Limk:hover {
     border-color: #7c3aed;
-    background: #252530;
+    background: #22222e;
 }
 
 

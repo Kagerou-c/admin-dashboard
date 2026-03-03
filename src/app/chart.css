@@ -1,8 +1,4 @@
-.Reports-wrap {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  min-height: 100vh;
-}
+/* Layout handled by .page-layout in globals.css */
 
 .chart-header {
   width: 100%;
@@ -44,6 +40,13 @@
   gap: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   min-height: 80px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
 }
 
 .stat-icon {
@@ -214,7 +217,8 @@
   box-sizing: border-box;
 }
 
-.Data-singkat-wrap .data {
+.Data-singkat-wrap .data,
+.data-wrap .data {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -222,74 +226,98 @@
   border: solid gray 2px;
   border-radius: 16px;
   background-color: white;
-  transition: 0.3s;
+  cursor: pointer;
   width: 100%;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
 }
 
-.Data-singkat-wrap .data:hover {
+.Data-singkat-wrap .data:hover,
+.data-wrap .data:hover {
+  transform: translateY(-6px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.Data-singkat-wrap .data span {
+.Data-singkat-wrap .data span,
+.data-wrap .data span {
   margin-top: 10px;
 }
 
-[data-theme="dark"] .chart-header h1{
-  color: #fff;  
+[data-theme="dark"] .Data-singkat-wrap .data,
+[data-theme="dark"] .chart-wrap .chart-card,
+[data-theme="dark"] .chart-wrap-doughnut,
+[data-theme="dark"] .summary-stats-wrap .stat-card,
+[data-theme="dark"] .legend-item .legend-value {
+  color: #e8e8f0;
+  background-color: #1a1a24;
+  border-color: #2a2a36;
 }
 
-[data-theme="dark"] .summary-stats-wrap .stat-card{
-  background-color: #1a1a22;
-  border-color: #2a2a34;
+[data-theme="dark"] .stat-card:hover,
+[data-theme="dark"] .Data-singkat-wrap .data:hover {
+  box-shadow: 0 4px 12px rgba(133, 123, 123, 0.514);
 }
 
-[data-theme="dark"] .stat-card .stat-info h3{
-  color: #fff;
+[data-theme="dark"] .chart-header h1 {
+  color: #e8e8f0;
 }
 
-[data-theme="dark"] .chart-wrap .chart-card{
-  background-color: #1a1a22;
-  border-color: #2a2a34;
+[data-theme="dark"] .chart-header p {
+  color: #94a3b8;
 }
 
-[data-theme="dark"] .Data-singkat-wrap .data {
-    background-color: #1a1a22;
-    border-color: #2a2a34;
+[data-theme="dark"] .stat-card .stat-info h3 {
+  color: #e8e8f0;
 }
 
-[data-theme="dark"] .chart-wrap-doughnut{
-  background-color: #1a1a22;
-  border-color: #2a2a34;
+[data-theme="dark"] .stat-card .stat-info p {
+  color: #94a3b8;
 }
 
-[data-theme="dark"] .legend-header h2{
-  color: #fff;
+[data-theme="dark"] .stat-icon {
+  background-color: #22222e;
 }
 
-[data-theme="dark"] .legend-header{
-  border-bottom: 2px solid #2a2a34;
+[data-theme="dark"] .user-icon {
+  background-color: #1a2a3d;
 }
 
-[data-theme="dark"] .legend-item{
-  background-color: #2a2a34;
+[data-theme="dark"] .money-icon {
+  background-color: #2d1a30;
 }
 
-[data-theme="dark"] .legend-item:hover{
-  background-color: #5c5c64;
+[data-theme="dark"] .book-icon {
+  background-color: #1a2d1e;
 }
 
-[data-theme="dark"] .legend-item .legend-label{
-  color: #fff;
+[data-theme="dark"] .chart-wrap-doughnut {
+  background-color: #1a1a24;
+  border-color: #2a2a36;
 }
 
-[data-theme="dark"] .legend-item .legend-value{
-  color: #fff;
+[data-theme="dark"] .legend-header h2 {
+  color: #e8e8f0;
 }
 
-[data-theme="dark"] .legend-item .legend-value{
-  background-color: #2a2a34;
+[data-theme="dark"] .legend-header {
+  border-bottom: 2px solid #2a2a36;
 }
+
+[data-theme="dark"] .legend-item {
+  background-color: #22222e;
+  border-color: #2a2a36;
+}
+
+[data-theme="dark"] .legend-item:hover {
+  background-color: #2e2e3a;
+  border-color: #3a3a46;
+}
+
+[data-theme="dark"] .legend-item .legend-label {
+  color: #e8e8f0;
+}
+
+
 
 /* Responsive Mobile */
 @media (max-width: 768px) {
@@ -314,35 +342,7 @@
     padding: 0 15px;
   }
 
-  .hero-section-wrap {
-    width: 100%;
-    margin: 10px auto;
-    padding: 15px;
-    border-radius: 0;
-  }
-
-  .hero-section h1 {
-    font-size: 1.4rem;
-  }
-
-  .hero-section p {
-    font-size: 0.9rem;
-  }
-
-  .Shortcut {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-section button {
-    width: 100%;
-  }
-
-  .data-wrap {
-    grid-template-columns: 1fr;
-    margin: 15px auto;
-    padding: 0 15px;
-  }
+  /* hero-section responsive rules are in dashboard.css */
 }
 
 /* Responsive Tablet */
@@ -356,12 +356,5 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-section-wrap {
-    width: 100%;
-  }
-
-  .data-wrap {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 15px;
-  }
+  /* hero-section & data-wrap tablet rules are in dashboard.css */
 }

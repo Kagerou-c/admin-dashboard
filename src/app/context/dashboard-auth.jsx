@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo, useEffect } from "react";
-import { AuthContex } from "./contex";
-import { ServerLogout } from "../server/server Logout";
+import { AuthContex } from "./auth-context";
+import { ServerLogout } from "../server/server-logout";
 
 
 export default function DashboardAuthContex({ children, initialUser }) {

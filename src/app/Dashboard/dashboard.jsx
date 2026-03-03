@@ -1,12 +1,12 @@
 'use client'
-import { AmbilData } from '../server/data server'
-import process from '../process/processMonthData';
-import { useState, useEffect } from 'react'
-import LoadingComponent from '../motion component/loading';
-import Link from 'next/link';
-import { useAuth } from '../contex/useAuth';
-import card from '../component/card';
-import '../dashbord.css'
+import { AmbilData } from "../server/data-server";
+import process from "../process/process-month-data";
+import { useState, useEffect } from "react";
+import LoadingComponent from "../motion-component/loading";
+import Link from "next/link";
+import { useAuth } from '../context/use-auth';
+import card from '../components/card';
+import "../dashboard.css"
 import { BookOpen, Wallet, FileDown, UsersRound, ChartColumn, Settings, BookSearch } from "lucide-react";
 
 export default function Dashboard() {
@@ -66,7 +66,7 @@ export default function Dashboard() {
                         Title={'Total Pendapatan'}
                         Atribute={<Wallet />} />
                     <CardContent>
-                        <span>{data.total_penghasilan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</span>
+                        <span>{data.total_penghasilan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 })}</span>
                         <p>+{data.growth.growthPendapatan}%</p>
                     </CardContent>
                 </Card>
@@ -131,7 +131,7 @@ export default function Dashboard() {
                     <p>Fitur yg sering digunakan</p>
                     <div className='Action'>
                         {QuickAction('/Setting', <Settings />, 'Settings')}
-                        {QuickAction('/Reports', <FileDown />, 'New Reports')}
+                        {QuickAction('/Import', <FileDown />, 'Import Data')}
                         {QuickAction('/Reports', <ChartColumn />, 'Chart')}
                         {QuickAction('/Reports', <BookOpen />, 'Stock Book')}
                     </div>

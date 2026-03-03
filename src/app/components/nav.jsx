@@ -1,6 +1,6 @@
 "use client"
 
-import { useAuth } from '../contex/useAuth'
+import { useAuth } from '../context/use-auth'
 import { ChartLine } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
