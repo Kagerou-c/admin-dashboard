@@ -1,7 +1,6 @@
 "use client"
 
 import { useAuth } from '../context/use-auth'
-import { ChartLine } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
@@ -30,9 +29,10 @@ export default function Navbar() {
 
                     <div className='Navigasi'>
                         {navItem('/Dashboard', 'Dashboard')}
-                        {navItem('/Setting', 'Setting')}
                         {navItem('/Reports', 'Reports')}
                         {navItem('/Import', 'Import Data')}
+                        {navItem('/Daftar-Transaksi', 'Daftar Transaksi')}
+                        {navItem('/Setting', 'Setting')}
 
                         <span>Halo, {displayName}</span>
                         <button className="normal" onClick={logout}>Logout</button>

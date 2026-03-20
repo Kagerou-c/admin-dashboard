@@ -14,22 +14,31 @@ ChartJS.register(
     Filler
 )
 
-export default function LineChart({ DataUser ,Bulan }) {
+export default function LineChart({ DataSaldo, Bulan }) {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false, // Fixed typo: mantainAspectRatio -> maintainAspectRatio
+        maintainAspectRatio: false,
         plugins: {
             legend: { display: false },
-            title: { display: true, text: 'Laporan User Berkunjung' },
-            tooltip:{
-                callbacks:{
-                    label:(context)=>{
-                        let Label = context.dataset.label
-                        if(context.parsed.y !== null){
-                            Label += context.parsed.y.toLocaleString('id-ID')+' User'
+            title: {
+                display: true,
+                text: 'Saldo Bersih per Bulan',
+                font: { size: 14, weight: '600' },
+                padding: { bottom: 16 }
+            },
+            tooltip: {
+                callbacks: {
+                    label: (context) => {
+                        let label = context.dataset.label || '';
+                        if (context.parsed.y !== null) {
+                            label += new Intl.NumberFormat('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR',
+                                minimumFractionDigits: 0
+                            }).format(context.parsed.y);
                         }
-                        return Label
+                        return label;
                     }
                 }
             }
@@ -37,18 +46,16 @@ export default function LineChart({ DataUser ,Bulan }) {
         scales: {
             y: {
                 beginAtZero: false,
-                max:8000,
-                min:0,
                 ticks: {
-                    stepSize: 1000, // This might need adjustment based on data
-                    callback: (value) => value.toLocaleString('id-ID')+' User'
+                    callback: (value) => new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    }).format(value)
                 }
             },
-            x: { // This is the x-axis configuration
-                grid: {
-                    display: false // Set display to false to hide vertical grid lines
-                }
-
+            x: {
+                grid: { display: false }
             }
         }
     }
@@ -56,28 +63,28 @@ export default function LineChart({ DataUser ,Bulan }) {
     const data = {
         labels: Bulan,
         datasets: [{
-            label: '',
-            data: DataUser,
-            borderColor: 'rgb(75, 192, 192)',
+            label: 'Saldo ',
+            data: DataSaldo,
+            borderColor: 'rgb(124, 93, 250)',
             backgroundColor: (context) => {
                 const ctx = context.chart.ctx;
                 const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, "rgba(56, 243, 243, 0.42)");
-                gradient.addColorStop(1, "rgba(48, 189, 189, 0)");
+                gradient.addColorStop(0, "rgba(124, 93, 250, 0.35)");
+                gradient.addColorStop(1, "rgba(124, 93, 250, 0)");
                 return gradient;
             },
             fill: true,
-            tension: 0.4, // Slightly smoother curve
-            pointBackgroundColor: 'rgba(0, 255, 255, 1)',
+            tension: 0.4,
+            pointBackgroundColor: 'rgba(124, 93, 250, 1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(75, 192, 192)'
+            pointHoverBorderColor: 'rgb(124, 93, 250)',
+            pointRadius: 4,
+            pointHoverRadius: 6,
         }]
     };
 
-
     return (
-        <Line height={'240px'} options={options} data={data} />
+        <Line options={options} data={data} />
     )
-
 }

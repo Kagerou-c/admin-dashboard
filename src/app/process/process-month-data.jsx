@@ -2,12 +2,13 @@
 export default function process(data) {
     const [lastMonth, curentMonth]=data
     
-    const growthUser = (curentMonth.total_user - lastMonth.total_user)*100/lastMonth.total_user
-    const growthBuku = (curentMonth.total_buku - lastMonth.total_buku)*100/lastMonth.total_buku
-    const growthPendapatan = (curentMonth.total_penghasilan - lastMonth.total_penghasilan)*100/lastMonth.total_penghasilan
+    const growthPemasukan = (curentMonth.pemasukan_bulanan - lastMonth.pemasukan_bulanan)*100/lastMonth.pemasukan_bulanan
+    const growthPengeluaran = (curentMonth.pengeluaran_bulanan - lastMonth.pengeluaran_bulanan)*100/lastMonth.pengeluaran_bulanan
+    const growthTrafficSetoran = (curentMonth.trafic_setoran - lastMonth.trafic_setoran)*100/lastMonth.trafic_setoran
+    const growthTrafficPenarikan = (curentMonth.trafic_penarikan - lastMonth.trafic_penarikan)*100/lastMonth.trafic_penarikan
 
-    const BukuTersisa = (10000 - curentMonth.total_buku)
+    const TotalTraffic = (curentMonth.trafic_setoran + curentMonth.trafic_penarikan)
 
-    return { ...curentMonth, BukuTersisa: BukuTersisa, growth:{growthUser:growthUser.toFixed(2), growthBuku:growthBuku.toFixed(2), growthPendapatan:growthPendapatan.toFixed(2)} }
+    return { ...curentMonth, TotalTraffic: TotalTraffic, growth:{growthPemasukan:growthPemasukan.toFixed(2), growthPengeluaran:growthPengeluaran.toFixed(2), growthTrafficSetoran:growthTrafficSetoran.toFixed(2), growthTrafficPenarikan:growthTrafficPenarikan.toFixed(2)} }
 
 }

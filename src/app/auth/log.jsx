@@ -1,9 +1,6 @@
 'use client';
 import { ServerLogin } from "../server/server-login";
 import { motion } from "framer-motion";
-
-import { useEffect } from "react";
-import { supabase } from "../lib/supabase-config";
 import "../login.css"
 
 export default function Login({ setIsLogin }) {
@@ -17,45 +14,6 @@ export default function Login({ setIsLogin }) {
         ServerLogin(emailUser, passwordUser)
     }
 
-    // function generate(){
-    //     let hasil = []
-
-    //     for(let i = 1; i <=30 ; i++){
-    //         const mathPenghasilan = Math.floor(Math.random()*600000)+100000
-    //         const mathUser = Math.floor(Math.random()*200)+76
-    //         const mathBuku = Math.floor(Math.random()*100)+30
-    //         hasil.push( {penghasilan : mathPenghasilan, UserBerkunjung : mathUser, BukuDiPinjam : mathBuku} )
-    //     }
-    //     return hasil
-    // }
-
-
-
-    useEffect(() => {
-
-        // const arr = generate()
-
-
-
-        // async function query(item) {
-
-
-        //     const { data, error } = await supabase
-        //         .from('Data Perbulan')
-        //         .insert([item])
-        //     if (error) {
-        //         console.error('Error inserting data:', error)
-        //     } else {
-        //         console.log('Data inserted:', data)
-        //     }
-        // }
-
-        //   arr.map((item, i)=>{
-
-        //     console.log(i)
-        //     query(item)})
-
-    }, [])
 
     return (
 

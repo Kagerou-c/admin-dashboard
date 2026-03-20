@@ -1,7 +1,7 @@
 function Card({ className, children }) {
 
     return (
-        <div className={className}>
+        <div className={className? className : ""}>
             {children}
         </div>
     )

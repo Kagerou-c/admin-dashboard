@@ -1,0 +1,156 @@
+
+.transactions-container {
+    width: 96%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e5e7eb;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.transactions-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Table Styles */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+.transaction-table th {
+    padding: 12px 16px;
+    background: #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction-table td {
+    padding: 16px;
+    font-size: 0.875rem;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.transaction-table tr:hover {
+    background-color: #f9fbfc;
+}
+
+/* Status Badges */
+.status {
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-pemasukan {
+    background-color: #ecfdf5;
+    color: #059669;
+}
+
+.status-pengeluaran {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.pagination-btn {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+/* Dark Theme overrides */
+[data-theme="dark"] .transactions-container {
+    background: #1a1a24;
+    border-color: #2a2a36;
+}
+
+[data-theme="dark"] .transactions-header h1 {
+    color: #e8e8f0;
+}
+
+[data-theme="dark"] .transaction-table th {
+    background: #252530;
+    color: #94a3b8;
+    border-bottom-color: #2a2a36;
+}
+
+[data-theme="dark"] .transaction-table td {
+    color: #ccc;
+    border-bottom-color: #2a2a36;
+}
+
+[data-theme="dark"] .transaction-table tr:hover {
+    background-color: #22222e;
+}
+
+[data-theme="dark"] .pagination-btn {
+    background: #252530;
+    border-color: #2a2a36;
+    color: #ccc;
+}
+
+[data-theme="dark"] .pagination-btn:hover:not(:disabled) {
+    background: #3b3b4f;
+    border-color: #3b82f6;
+}
+
+[data-theme="dark"] .pagination-btn.active {
+    background: #7c3aed;
+    border-color: #7c3aed;
+    color: white;
+}

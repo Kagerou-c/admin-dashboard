@@ -1,5 +1,4 @@
 import { GetUser } from '../provider';
-import DashboardAuthContex from '../context/dashboard-auth'
 import Navbar from '../components/nav'
 import Dashboard from './dashboard'
 

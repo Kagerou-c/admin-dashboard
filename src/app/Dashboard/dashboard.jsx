@@ -1,5 +1,5 @@
 'use client'
-import { AmbilData } from "../server/data-server";
+import { AmbilData } from "../server/server-Paginasi";
 import process from "../process/process-month-data";
 import { useState, useEffect } from "react";
 import LoadingComponent from "../motion-component/loading";
@@ -8,9 +8,12 @@ import { useAuth } from '../context/use-auth';
 import card from '../components/card';
 import "../dashboard.css"
 import { BookOpen, Wallet, FileDown, UsersRound, ChartColumn, Settings, BookSearch } from "lucide-react";
+import { motion } from "framer-motion";
+import { TestingAmbilData } from "../server/server-Data"
 
 export default function Dashboard() {
     const [data, setData] = useState();
+    const [data2, setData2] = useState();
     const [Loading, setLoading] = useState(true)
     const { user, isLogin } = useAuth()
     const { Card, CardHeder, CardContent } = card
@@ -19,9 +22,11 @@ export default function Dashboard() {
 
     useEffect(() => {
         async function fetchData() {
-            const rawdata = await AmbilData(['2026-01-01', '2026-02-01'])
-            const newdata = process(rawdata)
+            //const rawdata = await AmbilData(['2026-01-01', '2026-02-01'])
+            const rawdata1 = await TestingAmbilData(['2026-03', '2026-04'])
+            const newdata = process(rawdata1)
             setData(newdata)
+            //setData(newdata)
             setLoading(false)
         }
         fetchData()
@@ -44,61 +49,135 @@ export default function Dashboard() {
         )
     }
 
+    const variant = (sumbu, nilai) => {
+        return {
+            hiden: {
+                opacity: 0,
+                [sumbu]: nilai
+            },
+            show: {
+                opacity: 1,
+                [sumbu]: 0,
+                transition: {
+                    duration: 0.5,
+                    staggerChildren: 0.2,
+                }
+            }
+        }
+    }
+
+    const formatGrowth = (value) => {
+        if (!value) return "0%";
+        const num = parseFloat(value);
+        return num > 0 ? `+${value}%` : `${value}%`;
+    }
 
     return (
         <div>
             <div className='hero-section-wrap'>
-                <section className='hero-section'>
-                    <h1>Welcome {name}</h1>
-                    <p>ayo lihat perkembangan perpustakaan bulan kemarin</p>
-                    <div className='Shortcut'>
-                        <button>📋 View Full Reports</button>
-                        <button>⚙️ Quick Setting</button>
-                    </div>
-
-                </section>
+                <div className='hero-section'
+                >
+                    <motion.div className='hero-section-title'
+                        variants={variant("x", -20)}
+                        initial="hiden"
+                        animate="show">
+                        <h1>Welcome {name}</h1>
+                        <p>ayo lihat perkembangan perpustakaan bulan kemarin</p>
+                        <div className='Shortcut'>
+                            <button>📋 View Full Reports</button>
+                            <button>⚙️ Quick Setting</button>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
 
             <div className='data-wrap'>
 
-                <Card className='data'>
-                    <CardHeder
-                        Title={'Total Pendapatan'}
-                        Atribute={<Wallet />} />
-                    <CardContent>
-                        <span>{data.total_penghasilan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 })}</span>
-                        <p>+{data.growth.growthPendapatan}%</p>
-                    </CardContent>
-                </Card>
+                <motion.div
+                    className='data'
+                    variants={variant('x', -20)}
+                    initial="hiden"
+                    animate="show"
+                    transition={{ duration: 0.1 }}
+                    whileHover={{
+                        y: -5,
+                        transition: { duration: 0.1, ease: 'easeInOut' } // Cepat saat kursor masuk
+                    }}
+                >
+                    <Card>
+                        <CardHeder
+                            Title={'Total Pemasukan'}
+                            Atribute={<Wallet />} />
+                        <CardContent>
+                            <span>{data ? data.pemasukan_bulanan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }) : '0'}</span>
+                            <p>{formatGrowth(data?.growth.growthPemasukan)}</p>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
-                <Card className='data'>
-                    <CardHeder
-                        Title={'User Berkunjung'}
-                        Atribute={<UsersRound />} />
-                    <CardContent>
-                        <span>{data.total_user.toLocaleString("id-ID")}</span>
-                        <p>+{data.growth.growthUser}%</p>
-                    </CardContent>
-                </Card>
+                <motion.div
+                    className='data'
+                    variants={variant('x', -20)}
+                    initial="hiden"
+                    animate="show"
+                    transition={{ duration: 0.1 }}
+                    whileHover={{
+                        y: -5,
+                        transition: { duration: 0.1, ease: 'easeInOut' } // Cepat saat kursor masuk
+                    }}
+                >
+                    <Card >
+                        <CardHeder
+                            Title={'Total Pengeluaran'}
+                            Atribute={<UsersRound />} />
+                        <CardContent>
+                            <span>{data ? data.pengeluaran_bulanan.toLocaleString("id-ID") : 0}</span>
+                            <p>{formatGrowth(data?.growth.growthPengeluaran)}</p>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
-                <Card className='data'>
-                    <CardHeder
-                        Title={'Buku Dipinjam'}
-                        Atribute={<BookOpen />} />
-                    <CardContent>
-                        <span>{data.total_buku.toLocaleString("id-ID")}</span>
-                        <p>+{data.growth.growthBuku}%</p>
-                    </CardContent>
-                </Card>
+                <motion.div
+                    className='data'
+                    variants={variant('x', -20)}
+                    initial="hiden"
+                    animate="show"
+                    transition={{ duration: 0.1 }}
+                    whileHover={{
+                        y: -5,
+                        transition: { duration: 0.1, ease: 'easeInOut' } // Cepat saat kursor masuk
+                    }}>
+                    <Card >
+                        <CardHeder
+                            Title={'Traffic Penarikan'}
+                            Atribute={<BookOpen />} />
+                        <CardContent>
+                            <span>{data ? data.trafic_penarikan.toLocaleString("id-ID") : 0}</span>
+                            <p>{formatGrowth(data?.growth.growthTrafficPenarikan)}</p>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
-                <Card className='data'>
-                    <CardHeder
-                        Title={'Buku Tersisa'}
-                        Atribute={<BookSearch />} />
-                    <CardContent>
-                        <h1 style={{ marginTop: "28px", fontSize: '1.6rem' }}>{data.BukuTersisa.toLocaleString("id-ID")}</h1>
-                    </CardContent>
-                </Card>
+                <motion.div
+                    className='data'
+                    variants={variant('x', -20)}
+                    initial="hiden"
+                    animate="show"
+                    transition={{ duration: 0.1 }}
+                    whileHover={{
+                        y: -5,
+                        transition: { duration: 0.1, ease: 'easeInOut' } // Cepat saat kursor masuk
+                    }}>
+                    <Card >
+                        <CardHeder
+                            Title={'Traffic Setoran'}
+                            Atribute={<BookSearch />} />
+                        <CardContent>
+                            <span>{data ? data.trafic_setoran.toLocaleString("id-ID") : 0}</span>
+                            <p>{formatGrowth(data?.growth.growthTrafficSetoran)}</p>
+                        </CardContent>
+                    </Card>
+                </motion.div>
 
             </div>
 
@@ -137,6 +216,8 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+
+
 
         </div>
     )

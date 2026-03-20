@@ -106,7 +106,7 @@ function PreviewPanel({ file, headers, previewData, uploadStatus, errorMessage, 
                     )}
 
                     <button
-                        disabled={uploadStatus === 'uploading'}
+                        disabled={uploadStatus === 'uploading' || uploadStatus === 'success'}
                         className={`btn-import ${uploadStatus === 'uploading' ? 'loading' : ''}`}
                         onClick={UploadFile}
                     >

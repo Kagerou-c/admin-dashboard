@@ -91,6 +91,12 @@ export default function Import() {
             setErrorMessage('Gagal menghubungi server.')
 
         }
+        finally{
+            setTimeout(() => {
+                setUploadStatus('idle')
+                handleRemoveFile()
+            }, 2000)
+        }
     }
 
 
@@ -128,7 +134,7 @@ export default function Import() {
                                 uploadStatus={uploadStatus}
                                 errorMessage={errorMessage}
                                 removeFile={handleRemoveFile}
-                                handlerUpload={handleUpload}
+                                UploadFile={handleUpload}
                             />
                         )}
                         <PanduanImport />

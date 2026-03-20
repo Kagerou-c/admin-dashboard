@@ -1,8 +1,9 @@
 "use server"
 
-import { supabase } from "../lib/supabase-config"
+import { createClient } from "../lib/protection"
 
 export async function uploadData(file) {
+    const supabase = await createClient()
     const { data, error } = await supabase.from('data').insert(file)
     if (error) {
 

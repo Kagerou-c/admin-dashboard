@@ -135,59 +135,7 @@ export default function SettingPage() {
             </div>
 
             {/* ────────────────────────────────────
-                BAGIAN 2: NOTIFIKASI
-            ──────────────────────────────────── */}
-            <div className="setting-card">
-                <h2>🔔 Notifikasi</h2>
-                <p className="card-desc">Pilih notifikasi apa saja yang ingin Anda terima.</p>
-
-                <div className="notif-list">
-                    {/* Notif Email */}
-                    <div className="notif-item">
-                        <div>
-                            <h3>Notifikasi Email</h3>
-                            <p>Kirim pemberitahuan ke email Anda</p>
-                        </div>
-                        <button
-                            className={`toggle ${notifEmail ? "on" : "off"}`}
-                            onClick={() => { setNotifEmail(!notifEmail); saveNotif(!notifEmail, notifPush, notifReport) }}
-                        >
-                            <span className="toggle-knob" />
-                        </button>
-                    </div>
-
-                    {/* Notif Push */}
-                    <div className="notif-item">
-                        <div>
-                            <h3>Notifikasi Browser</h3>
-                            <p>Tampilkan notifikasi langsung di browser</p>
-                        </div>
-                        <button
-                            className={`toggle ${notifPush ? "on" : "off"}`}
-                            onClick={() => { setNotifPush(!notifPush); saveNotif(notifEmail, !notifPush, notifReport) }}
-                        >
-                            <span className="toggle-knob" />
-                        </button>
-                    </div>
-
-                    {/* Notif Laporan */}
-                    <div className="notif-item">
-                        <div>
-                            <h3>Laporan Mingguan</h3>
-                            <p>Kirim ringkasan laporan setiap minggu</p>
-                        </div>
-                        <button
-                            className={`toggle ${notifReport ? "on" : "off"}`}
-                            onClick={() => { setNotifReport(!notifReport); saveNotif(notifEmail, notifPush, !notifReport) }}
-                        >
-                            <span className="toggle-knob" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* ────────────────────────────────────
-                BAGIAN 3: PILIH TEMA
+                BAGIAN 2: PILIH TEMA
             ──────────────────────────────────── */}
             <div className="setting-card">
                 <h2>🎨 Pilih Tema</h2>

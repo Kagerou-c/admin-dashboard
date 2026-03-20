@@ -1,4 +1,4 @@
-'use client'; // WAJIB untuk Next.js App Router
+'use client';
 
 import React from 'react';
 import {
@@ -9,16 +9,9 @@ import {
   Title,
   Tooltip,
   Legend,
-  plugins,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-
-
-
-
-
-// Registrasi modul Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -28,71 +21,77 @@ ChartJS.register(
   Legend
 );
 
-const RevenueChart = ({ DataPenghasilan, Bulan }) => {
-
+const RevenueChart = ({ TraficSetoran, TraficPenarikan, Bulan }) => {
 
   const data = {
     labels: Bulan,
     datasets: [
       {
-        label: 'Penghasian  ',
-        data: DataPenghasilan,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 205, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(201, 203, 207, 0.2)'
-        ],
-        borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
-        ],
+        label: 'Setoran  ',
+        data: TraficSetoran,
+        backgroundColor: 'rgba(99, 179, 255, 0.65)',
+        borderColor: 'rgb(59, 150, 240)',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: 6,
+      },
+      {
+        label: 'Penarikan  ',
+        data: TraficPenarikan,
+        backgroundColor: 'rgba(255, 105, 180, 0.55)',
+        borderColor: 'rgb(255, 80, 160)',
+        borderWidth: 1,
+        borderRadius: 6,
       },
     ],
   }
+
   const config = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { callback: (value) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(value) },
+        ticks: {
+          callback: (value) => value.toLocaleString('id-ID') + ' User'
+        },
+      },
+      x: {
+        grid: { display: false }
       }
     },
-
     plugins: {
       tooltip: {
         callbacks: {
-          label: function (Context) {
-            let label = Context.dataset.label
-            if (Context.parsed.y !== null) {
-              label += new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(Context.parsed.y)
+          label: function (context) {
+            let label = context.dataset.label || '';
+            if (context.parsed.y !== null) {
+              label += context.parsed.y.toLocaleString('id-ID') + ' User';
             }
-            return label
+            return label;
           }
         }
       },
-      legend: { display: false },
-      title: { display: true, text: 'Laporan penghasilan' },
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'rectRounded',
+          padding: 20,
+        }
+      },
+      title: {
+        display: true,
+        text: 'Trafik User (Setoran vs Penarikan)',
+        font: { size: 14, weight: '600' },
+        padding: { bottom: 16 }
+      },
     }
   }
 
-
   return (
-
     <Bar data={data} options={config} />
-
   );
-
 };
+
 export default RevenueChart;

@@ -1,46 +1,81 @@
 export function chartData(params) {
+  const formatDate = (date) => new Date(date).toLocaleString('id-ID', { month: 'long' });
 
+  const result = params ? params.reduce((acc, item) => {
 
-  const newDate = (date) => new Date(date).toLocaleDateString('id-ID', { month: 'long' })
+    //bulan
+    acc.month.push(item.bulan);
 
+    //chart trafic user
+    acc.traficSetoran.push(item.trafic_setoran);
+    acc.traficPenarikan.push(item.trafic_penarikan);
 
-  const result = params.reduce((acc, item, index, arr) => {
-    acc.dataUser.push(item.total_user)
-    acc.dataPenghasilan.push(item.total_penghasilan)
-    acc.dataBuku.push(item.total_buku)
-    acc.month.push(newDate(item.month))
+    //chart saldo keseluruhan bulan
+    acc.saldoBersih.push(item.nominal);
 
-    acc.totalUser += item.total_user
-    acc.totalPenghasilan += item.total_penghasilan
-    acc.totalBuku += item.total_buku
+    //chart pemasukan dan pengeluaran
+    acc.pemasukanBulanan.push(item.pemasukan_bulanan);
+    acc.pengeluaranBulanan.push(item.pengeluaran_bulanan);
 
-    if (index === 0) return acc
+    //summary
+    acc.totalTrfic += item.trafic_setoran + item.trafic_penarikan;
+    acc.totalSaldo += item.nominal;
 
-    const prev = arr[index - 1].total_user
-
-    if (item.total_user > prev) {
-      acc.BulanPeningkatan = newDate(item.month)
-    }
-
-    if (item.total_user < prev) {
-      acc.BulanPenurunan = newDate(item.month)
-    }
-
-    return acc
+    return acc;
   }, {
-    dataUser: [],
-    dataPenghasilan: [],
-    dataBuku:[],
+    //bulan
     month: [],
-    totalUser: 0,
-    totalPenghasilan: 0,
-    totalBuku: 0,
+
+    //chart trafic user
+    traficPenarikan: [],
+    traficSetoran: [],
+
+    //chart saldo keseluruhan bulan
+    saldoBersih: [],
+
+    //chart pemasukan dan pengeluaran
+    pemasukanBulanan: [],
+    pengeluaranBulanan: [],
+
+    //summary
+    totalTrfic: 0,
+    totalSaldo: 0,
     BulanPeningkatan: null,
     BulanPenurunan: null
   })
+    : {
+       //bulan
+    month: [],
+
+    //chart trafic user
+    traficPenarikan: [],
+    traficSetoran: [],
+
+    //chart saldo keseluruhan bulan
+    saldoBersih: [],
+
+    //chart pemasukan dan pengeluaran
+    pemasukanBulanan: [],
+    pengeluaranBulanan: [],
+
+    //summary
+    totalTrfic: 0,
+    totalSaldo: 0,
+    BulanPeningkatan: null,
+    BulanPenurunan: null
+    }
+  //hitung bulan dengan trafic tertinggi & terendah
+  if (params && params.length > 0) {
+    const sorted = [...params].sort((a, b) =>
+      (a.trafic_setoran + a.trafic_penarikan) - (b.trafic_setoran + b.trafic_penarikan)
+    );
+
+    result.BulanPenurunan = formatDate(sorted[0].bulan);
+    result.BulanPeningkatan = formatDate(sorted[sorted.length - 1].bulan);
+  }
 
   return {
     ...result,
-    rata_rata: result.totalUser / result.dataUser.length
-  }
+    rata_rata: result.traficSetoran.length + result.traficPenarikan.length > 0 ? result.totalTrfic / result.traficSetoran.length+result.traficPenarikan.length : 0
+  };
 }

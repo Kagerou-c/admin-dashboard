@@ -40,13 +40,12 @@
   gap: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
   min-height: 80px;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
 }
 
 .stat-icon {
@@ -71,6 +70,10 @@
 
 .book-icon {
   background-color: #e8f5e9;
+}
+
+.decline-icon {
+  background-color: #fef2f2;
 }
 
 .stat-info h3 {
@@ -106,7 +109,10 @@
 
 .chart-card:last-child {
   flex: 4;
+}
 
+.chart-card-full {
+  flex: 1 1 100%;
 }
 
 .chart-wrap-doughnut {
@@ -169,7 +175,6 @@
 .legend-item:hover {
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transform: translateY(-1px);
   border-color: #e0e0e0;
 }
 
@@ -229,12 +234,12 @@
   cursor: pointer;
   width: 100%;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .Data-singkat-wrap .data:hover,
 .data-wrap .data:hover {
-  transform: translateY(-6px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -288,6 +293,10 @@
 
 [data-theme="dark"] .book-icon {
   background-color: #1a2d1e;
+}
+
+[data-theme="dark"] .decline-icon {
+  background-color: #2d1a1a;
 }
 
 [data-theme="dark"] .chart-wrap-doughnut {
