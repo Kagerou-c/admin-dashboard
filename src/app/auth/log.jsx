@@ -14,55 +14,67 @@ export default function Login({ setIsLogin }) {
         ServerLogin(emailUser, passwordUser)
     }
 
-
     return (
-
         <motion.div
             className="Login-Component"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
         >
             <motion.div
                 className="Login-wrap"
-                style={{ width: '500px' }}
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -100, opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{ y: 15, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
             >
-                <h1>Admin Dashboard</h1>
-                <p>Sign in to your account or create a new one</p>
-                <div className="tab-container">
-                    <motion.button
-                        className="tab active"
-                        onClick={() => setIsLogin(true)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Login
-                    </motion.button>
-                    <motion.button
-                        className="tab"
-                        onClick={() => setIsLogin(false)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Register
-                    </motion.button>
+                {/* Brand Icon */}
+                <div className="login-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
                 </div>
+
+                <h1>Admin Dashboard</h1>
+                <p>Masuk ke akun administrator Anda</p>
+
                 <form className="Login-From" onSubmit={handlerLog}>
-                    <span>email</span>
-                    <input name="email" type="email" placeholder="isi email"  ></input>
-                    <span>password</span>
-                    <input name="password" type="password" placeholder="isi password" />
+                    <div>
+                        <label className="login-label">Email</label>
+                        <div className="login-input-group">
+                            <svg className="login-field-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M22 4L12 13 2 4"/>
+                            </svg>
+                            <input name="email" type="email" placeholder="nama@email.com" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="login-label">Password</label>
+                        <div className="login-input-group">
+                            <svg className="login-field-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0110 0v4"/>
+                            </svg>
+                            <input name="password" type="password" placeholder="Masukkan password" />
+                        </div>
+                    </div>
+
                     <motion.button
+                        className="login-submit-btn"
                         type='submit'
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >sumbit</motion.button>
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        Sign In
+                    </motion.button>
                 </form>
+
+                <div className="login-footer">
+                    Admin Dashboard &copy; {new Date().getFullYear()}
+                </div>
 
             </motion.div>
         </motion.div>

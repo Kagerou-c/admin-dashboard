@@ -285,7 +285,8 @@
         width: 100%;
         margin: 10px auto;
         padding: 15px;
-        border-radius: 0;
+        border-radius: 12px;
+        box-sizing: border-box;
     }
 
     .hero-section h1 {
@@ -315,6 +316,24 @@
         grid-template-columns: 1fr;
         margin: 15px auto;
         padding: 0 15px;
+    }
+
+    .Quick-Action .Action .Limk {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .Quick-Action .Action {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .Information div {
+        grid-template-columns: 1fr;
+    }
+
+    .Information div p {
+        margin-left: 0;
     }
 }
 

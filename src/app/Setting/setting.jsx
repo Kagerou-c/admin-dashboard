@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useAuth } from "../context/use-auth"
+import { useAuth } from "../Hooks/use-auth"
 import { updateProfile } from "../server/server-update-profile"
 import { Save, Check, Moon, Sun, Monitor } from "lucide-react"
 import "../setting.css"

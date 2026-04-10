@@ -12,7 +12,9 @@
 
 /* ── Header ── */
 .setting-header {
-    margin-bottom: 28px;
+    margin-left: 20px;
+    margin-bottom: 24px;
+    padding: 10px 0;
 }
 
 .setting-header h1 {
@@ -23,8 +25,8 @@
 
 .setting-header p {
     margin: 0;
-    font-size: 0.9rem;
-    color: #888;
+    font-size: 0.95rem;
+    color: #6b7280;
 }
 
 /* ── Section Card ── */
@@ -286,6 +288,14 @@
         margin: 16px auto;
     }
 
+    .setting-header {
+        margin-left: 0;
+    }
+
+    .setting-header h1 {
+        font-size: 1.4rem;
+    }
+
     .setting-card {
         padding: 20px 16px;
         border-radius: 14px;
@@ -293,5 +303,10 @@
 
     .theme-grid {
         grid-template-columns: 1fr;
+    }
+
+    .btn-save {
+        width: 100%;
+        justify-content: center;
     }
 }

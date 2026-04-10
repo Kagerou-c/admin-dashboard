@@ -11,9 +11,9 @@ export async function ServerLogin(email, password) {
         password: password
     })
     if (error) {
-        supabase.auth.signOut();
+        return { success: false, message: error.message };
     }
-    else{
+    else {
         redirect('/Dashboard')
     }
 }

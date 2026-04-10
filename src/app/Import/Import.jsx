@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
 
 import { ParseData } from '../process/parse-data'
 import { CleaningData } from '../process/cleaning-data'
@@ -22,7 +22,7 @@ export default function Import() {
     const [summary, setSummary] = useState(null)
     const fileInputRef = useRef(null)
 
-
+  
 
     const onDragOver = (e) => {
         e.preventDefault()
@@ -55,7 +55,7 @@ export default function Import() {
                 setSummary(validationData)
                 setData(cleaningData)
                 setHeaders(Object.keys(result.data[0])) // Ambil key sebagai header
-                setPreviewData(result.data) // Data sudah berupa array of objects
+                setPreviewData(result.data.slice(0, 10)) // Data sudah berupa array of objects
             }
         })
 
@@ -100,15 +100,15 @@ export default function Import() {
     }
 
 
+
+
     return (
         <div className="import-page">
             <div className="import-container">
 
                 <header className="import-header">
-                    <div>
-                        <h1>Import Data</h1>
-                        <p>Upload file CSV untuk memperbarui data sistem</p>
-                    </div>
+                    <h1>Import Data</h1>
+                    <p>Upload file CSV untuk memperbarui data sistem</p>
                 </header>
 
 

@@ -1,23 +1,22 @@
 /* Layout handled by .page-layout in globals.css */
 
 .chart-header {
-  width: 100%;
-  max-width: 900px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-left: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 10px 24px;
 }
 
 .chart-header h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #1e1e1e;
+  margin: 0 0 6px 0;
 }
 
 .chart-header p {
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgb(131, 131, 131);
+  margin: 0;
+  font-size: 0.95rem;
+  color: #6b7280;
 }
 
 .summary-stats-wrap {
@@ -330,6 +329,11 @@
 
 /* Responsive Mobile */
 @media (max-width: 768px) {
+  .chart-header {
+    margin-left: 0;
+    padding: 10px 14px;
+  }
+
   .chart-wrap {
     flex-direction: column;
     padding: 0 10px;
@@ -342,13 +346,18 @@
   }
 
   .chart-card {
-    height: 280px;
+    height: 260px;
+  }
+
+  .chart-wrap-doughnut {
+    height: auto;
+    min-height: 200px;
   }
 
   .Data-singkat-wrap {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
-    padding: 0 15px;
+    padding: 0 14px;
   }
 
   /* hero-section responsive rules are in dashboard.css */
