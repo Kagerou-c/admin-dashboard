@@ -15,6 +15,5 @@ export async function ServerLogin(email, password) {
     }
     else {
         redirect('/Dashboard')
-        return { success: true, message: 'Login berhasil!' };
     }
 }
