@@ -39,7 +39,8 @@ export default function PanduanImport() {
                     variants={variant('y', 20, item.id * 0.1)}
                     initial="hiden"
                     whileInView="show"
-                    >
+                    viewport={{ once: true }}
+                >
                     <Card className="panduan-import-item">
                         <CardHeder Name="panduan-import-item-header" Title={`${item.id}. ${item.titel}`} />
                         <CardContent Name="panduan-import-item-desc">
