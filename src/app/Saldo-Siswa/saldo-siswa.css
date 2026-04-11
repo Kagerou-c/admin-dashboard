@@ -1,0 +1,333 @@
+/* ══════════════════════════════════════════
+   Saldo Siswa — Student Balance Page
+   ══════════════════════════════════════════ */
+
+.saldo-container {
+    width: 96%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px 40px;
+    box-sizing: border-box;
+}
+
+/* ── Header ── */
+.saldo-header {
+    margin-left: 20px;
+    margin-bottom: 24px;
+    padding: 10px 0;
+}
+
+.saldo-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #111827;
+}
+
+.saldo-header p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+/* ── Summary Cards ── */
+.saldo-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.summary-students .summary-icon {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    color: #7c3aed;
+}
+
+.summary-balance .summary-icon {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #059669;
+}
+
+.summary-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.summary-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ── Search ── */
+.saldo-search-wrapper {
+    margin-bottom: 20px;
+}
+
+.search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 44px 14px 42px;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: white;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.search-input::placeholder {
+    color: #9ca3af;
+}
+
+.search-clear {
+    position: absolute;
+    right: 12px;
+    background: #f3f4f6;
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: #6b7280;
+}
+
+.search-result-info {
+    margin: 10px 0 0 4px;
+    font-size: 0.82rem;
+    color: #6b7280;
+}
+
+/* ── Table Card ── */
+.saldo-table-card {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.saldo-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+}
+
+.saldo-table th {
+    padding: 14px 16px;
+    background: #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.saldo-table td {
+    padding: 16px;
+    font-size: 0.875rem;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.saldo-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Cell Badges ── */
+.nik-badge {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.82rem;
+    background: #f3f4f6;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: #4b5563;
+}
+
+.nama-cell { font-weight: 500; }
+
+.kelas-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    color: #2563eb;
+}
+
+.saldo-cell {
+    font-weight: 600;
+    color: #059669 !important;
+    white-space: nowrap;
+}
+
+/* ── Empty State ── */
+.empty-state { text-align: center; padding: 48px 16px !important; }
+
+.empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #9ca3af;
+}
+
+.empty-content svg { margin-bottom: 8px; }
+.empty-content p { font-size: 0.95rem; font-weight: 500; color: #6b7280; margin: 0; }
+.empty-content span { font-size: 0.82rem; color: #9ca3af; }
+
+/* ── Pagination ── */
+.saldo-pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    padding: 16px 20px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.pagination-btn {
+    padding: 8px 14px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.pagination-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* ══════════════════════════════════════════
+   Dark Theme
+   ══════════════════════════════════════════ */
+
+[data-theme="dark"] .saldo-header h1 { color: #e8e8f0; }
+[data-theme="dark"] .saldo-header p { color: #94a3b8; }
+
+[data-theme="dark"] .summary-card { background: #1a1a24; border-color: #2a2a36; box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+[data-theme="dark"] .summary-students .summary-icon { background: linear-gradient(135deg, #2e1065, #4c1d95); color: #a78bfa; }
+[data-theme="dark"] .summary-balance .summary-icon { background: linear-gradient(135deg, #064e3b, #065f46); color: #6ee7b7; }
+[data-theme="dark"] .summary-label { color: #94a3b8; }
+[data-theme="dark"] .summary-value { color: #e8e8f0; }
+
+[data-theme="dark"] .search-input { background: #1a1a24; border-color: #2a2a36; color: #e0e0ea; }
+[data-theme="dark"] .search-input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+[data-theme="dark"] .search-input::placeholder { color: #64748b; }
+[data-theme="dark"] .search-icon { color: #64748b; }
+[data-theme="dark"] .search-clear { background: #2a2a36; color: #94a3b8; }
+[data-theme="dark"] .search-result-info { color: #94a3b8; }
+
+[data-theme="dark"] .saldo-table-card { background: #1a1a24; border-color: #2a2a36; }
+[data-theme="dark"] .saldo-table th { background: #252530; color: #94a3b8; border-bottom-color: #2a2a36; }
+[data-theme="dark"] .saldo-table td { color: #ccc; border-bottom-color: #2a2a36; }
+[data-theme="dark"] .nik-badge { background: #252530; color: #94a3b8; }
+[data-theme="dark"] .kelas-badge { background: linear-gradient(135deg, #1e1b4b, #312e81); color: #818cf8; }
+[data-theme="dark"] .saldo-cell { color: #6ee7b7 !important; }
+[data-theme="dark"] .empty-content p { color: #94a3b8; }
+[data-theme="dark"] .empty-content span { color: #64748b; }
+[data-theme="dark"] .empty-content svg { color: #4b5563; }
+
+[data-theme="dark"] .saldo-pagination { border-top-color: #2a2a36; }
+[data-theme="dark"] .pagination-btn { background: #252530; border-color: #2a2a36; color: #ccc; }
+[data-theme="dark"] .pagination-btn:hover:not(:disabled) { background: #2a2a36; border-color: #3b82f6; }
+
+
+/* ══════════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .saldo-container { width: 100%; padding: 0 14px 30px; margin: 16px auto; }
+    .saldo-header { margin-left: 0; }
+    .saldo-header h1 { font-size: 1.4rem; }
+    .saldo-summary { grid-template-columns: 1fr; }
+    .summary-card { padding: 18px 20px; }
+    .summary-value { font-size: 1.25rem; }
+    .saldo-table th:nth-child(1), .saldo-table td:nth-child(1) { display: none; }
+    .saldo-pagination { flex-direction: column; gap: 12px; padding: 14px; }
+    .pagination-controls { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .saldo-container { width: 100%; }
+    .summary-value { font-size: 1.3rem; }
+}
