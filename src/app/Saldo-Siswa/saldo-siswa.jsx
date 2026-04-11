@@ -60,8 +60,6 @@ export default function SaldoSiswaUI() {
             getData(currentPage + 1, debouncedSearch);
         }
     };
-
-    console.log (data)
     
     // ── Handle next page click ──
     const handlerClickNext = () => {

@@ -105,7 +105,7 @@ export default function Navbar() {
     // ── Desktop Sidebar Nav ──
     return (
         <nav>
-            {isLogin ? (
+            {isLogin && (
                 <>
                     <div className='Tittle'>
                         <h1>Admin Dashboard</h1>
@@ -123,8 +123,6 @@ export default function Navbar() {
                         <button className="normal" onClick={logout}>Logout</button>
                     </div>
                 </>
-            ) : (
-                <span>Belum login</span>
             )}
         </nav>
     )
