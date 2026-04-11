@@ -1,17 +1,28 @@
 'use client';
 import { ServerLogin } from "../server/server-login";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import LoadingCircle from "../motion-component/loading-circle";
+import { Mail, Lock, AlertCircle, CheckCircle2 } from "lucide-react";
 import "../login.css"
 
-export default function Login({ setIsLogin }) {
+export default function Login() {
+    // status: null | { type: 'loading' | 'error' | 'success', message: string }
+    const [status, setStatus] = useState(null)
 
-    async function handlerLog(e) {
+    async function handlerclick(e) {
         e.preventDefault()
 
         const emailUser = e.target.email.value
         const passwordUser = e.target.password.value
 
-        ServerLogin(emailUser, passwordUser)
+        setStatus({ type: 'loading', message: 'Sedang masuk...' })
+
+        
+            const result = await ServerLogin(emailUser, passwordUser)
+            if (!result.success) {
+                setStatus({ type: 'error', message: 'Email atau password salah' })
+            }
     }
 
     return (
@@ -35,14 +46,11 @@ export default function Login({ setIsLogin }) {
                 <h1>Admin Dashboard</h1>
                 <p>Masuk ke akun administrator Anda</p>
 
-                <form className="Login-From" onSubmit={handlerLog}>
+                <form className="Login-From" onSubmit={handlerclick}>
                     <div>
                         <label className="login-label">Email</label>
                         <div className="login-input-group">
-                            <svg className="login-field-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="M22 4L12 13 2 4"/>
-                            </svg>
+                            <Mail className="login-field-icon" size={18} />
                             <input name="email" type="email" placeholder="nama@email.com" />
                         </div>
                     </div>
@@ -50,21 +58,44 @@ export default function Login({ setIsLogin }) {
                     <div>
                         <label className="login-label">Password</label>
                         <div className="login-input-group">
-                            <svg className="login-field-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0110 0v4"/>
-                            </svg>
+                            <Lock className="login-field-icon" size={18} />
                             <input name="password" type="password" placeholder="Masukkan password" />
                         </div>
                     </div>
 
+                    {/* Status Message */}
+                    <AnimatePresence mode="wait">
+                        {status && (
+                            <motion.div
+                                key={status.type}
+                                className={`login-status login-status--${status.type}`}
+                                initial={{ opacity: 0, y: -8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                transition={{ duration: 0.25 }}
+                            >
+                                {status.type === 'loading' && (
+                                    <LoadingCircle size={18} stroke={2.5} color="#3b82f6" />
+                                )}
+                                {status.type === 'error' && (
+                                    <AlertCircle className="login-status-icon" size={18} strokeWidth={2.5} />
+                                )}
+                                {status.type === 'success' && (
+                                    <CheckCircle2 className="login-status-icon" size={18} strokeWidth={2.5} />
+                                )}
+                                <span>{status.message}</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
                     <motion.button
                         className="login-submit-btn"
                         type='submit'
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        disabled={status?.type === 'loading'}
+                        whileHover={status?.type !== 'loading' ? { scale: 1.02 } : {}}
+                        whileTap={status?.type !== 'loading' ? { scale: 0.98 } : {}}
                     >
-                        Sign In
+                        {status?.type === 'loading' ? 'Memproses...' : 'Sign In'}
                     </motion.button>
                 </form>
             </motion.div>
