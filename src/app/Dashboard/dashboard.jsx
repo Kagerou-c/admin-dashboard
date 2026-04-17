@@ -1,10 +1,9 @@
 'use client'
-import { AmbilData } from "../server/server-Paginasi";
 import process from "../process/process-month-data";
 import { useState, useEffect } from "react";
-import LoadingComponent from "../motion-component/loading";
 import Link from "next/link";
 import { useAuth } from '../Hooks/use-auth';
+import { useLoading } from '../Hooks/use-loading';
 import card from '../components/card';
 import "../dashboard.css"
 import { BookOpen, Wallet, FileDown, UsersRound, ChartColumn, Settings, BookSearch } from "lucide-react";
@@ -13,27 +12,28 @@ import { TestingAmbilData } from "../server/server-Data"
 
 export default function Dashboard() {
     const [data, setData] = useState();
-    const [Loading, setLoading] = useState(true)
     const { user, isLogin } = useAuth()
+    const { isLoading, startLoading, stopLoading } = useLoading()
     const { Card, CardHeder, CardContent } = card
 
     const name = user?.user_metadata?.display_name
     useEffect(() => {
         async function fetchData() {
+            startLoading()
             //const rawdata = await AmbilData(['2026-01-01', '2026-02-01'])
             const rawdata1 = await TestingAmbilData(['2026-04', '2026-05'])
             const newdata = process(rawdata1)
             setData(newdata)
             //setData(newdata)
-            setLoading(false)
+            stopLoading()
         }
         fetchData()
 
     }, [])
 
 
-    if (Loading) {
-        return <LoadingComponent />
+    if (isLoading || !data) {
+        return null
     }
 
     const QuickAction = (redirect, icon, Label) => {

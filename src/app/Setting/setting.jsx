@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "../Hooks/use-auth"
+import { useLoading } from "../Hooks/use-loading"
 import { updateProfile } from "../server/server-update-profile"
 import { Save, Check, Moon, Sun, Monitor } from "lucide-react"
 import "../setting.css"
 
 export default function SettingPage() {
     const { user } = useAuth()
+    const { startLoading, stopLoading } = useLoading()
 
     // Nama
     const [displayName, setDisplayName] = useState("")
@@ -61,10 +63,12 @@ export default function SettingPage() {
         e.preventDefault()
         setSaving(true)
         setSaveMessage(null)
+        startLoading()
 
         const result = await updateProfile(displayName)
         setSaveMessage(result)
         setSaving(false)
+        stopLoading()
 
         if (result.success) {
             setTimeout(() => setSaveMessage(null), 3000)

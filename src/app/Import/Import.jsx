@@ -9,6 +9,7 @@ import { uploadData } from '../server/upload-data-server'
 import PanduanImport from './panduan-import'
 import Summary from './summary'
 import { ImportPanel, PreviewPanel } from './import-priview'
+import { useLoading } from '../Hooks/use-loading'
 import './Import.css'
 
 export default function Import() {
@@ -21,6 +22,7 @@ export default function Import() {
     const [errorMessage, setErrorMessage] = useState('')
     const [summary, setSummary] = useState(null)
     const fileInputRef = useRef(null)
+    const { startLoading, stopLoading } = useLoading()
 
   
 
@@ -74,6 +76,7 @@ export default function Import() {
 
         setUploadStatus('uploading')
         setErrorMessage('')
+        startLoading()
 
         try {
 
@@ -92,6 +95,7 @@ export default function Import() {
 
         }
         finally{
+            stopLoading()
             setTimeout(() => {
                 setUploadStatus('idle')
                 handleRemoveFile()
