@@ -1,23 +1,23 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import LoadingComponent from '../motion-component/loading';
+import { useLoading } from '../Hooks/use-loading';
 import { Paginasi } from '../server/server-Paginasi';
 import './transactions.css';
 
 export default function DaftarTransaksiUI() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [totalCount, setTotalCount] = useState(0);
     const itemPerPage = 10;
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     const getData = async (page) => {
-
+        startLoading()
         const { data, count } = await Paginasi(page, itemPerPage)
         setData(prevData => ({ ...prevData, [page]: data }))
         setTotalCount(count)
-        setLoading(false)
+        stopLoading()
     }
 
     const handlerHover = () => {
@@ -33,7 +33,6 @@ export default function DaftarTransaksiUI() {
         }
 
         getData(currentPage + 1)
-        setLoading(true)
         setCurrentPage(prev => prev + 1)
         window.scrollTo(0, 0)
     }
@@ -54,8 +53,8 @@ export default function DaftarTransaksiUI() {
         getData(currentPage)
     }, [])
 
-    if (!data || loading) {
-        return <LoadingComponent />
+    if (!data || isLoading) {
+        return null
     }
 
     return (

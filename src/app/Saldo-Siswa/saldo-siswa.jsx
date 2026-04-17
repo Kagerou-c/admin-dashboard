@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LoadingComponent from '../motion-component/loading';
+import { useLoading } from '../Hooks/use-loading';
 import { AmbilDataSiswa } from '../server/server-Data-Siswa';
 import './saldo-siswa.css';
 
@@ -10,11 +10,11 @@ export default function SaldoSiswaUI() {
     const [searchInput, setSearchInput] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [totalCount, setTotalCount] = useState(0);
     const [totalSaldo, setTotalSaldo] = useState(0);
     const itemPerPage = 10;
+    const { isLoading, startLoading, stopLoading } = useLoading();
 
     // ── Debounce search input ──
     useEffect(() => {
@@ -26,29 +26,29 @@ export default function SaldoSiswaUI() {
 
     // ── Fetch data from server ──
     const getData = useCallback(async (page, search) => {
+        startLoading();
         const result = await AmbilDataSiswa(search || '', page, itemPerPage);
         if (result.error) {
-            setLoading(false);
+            stopLoading();
             return;
         }
         setData(prevData => ({ ...prevData, [`${page}`]: result.data }));
         setTotalCount(result.count);
         setTotalSaldo(result.totalSaldo);
-        setLoading(false);
+        stopLoading();
     }, []);
 
     // ── Initial load ──
     useEffect(() => {
         getData(1, '');
-    }, [getData]);
+    }, []);
 
     // ── Re-fetch when search changes ──
     useEffect(() => {
         setCurrentPage(1);
-        setLoading(true);
         setData({});
         getData(1, debouncedSearch);
-    }, [debouncedSearch, getData]);
+    }, [debouncedSearch]);
 
     // ── Cache key ──
     const cacheKey = `${currentPage}`;
@@ -70,7 +70,7 @@ export default function SaldoSiswaUI() {
             window.scrollTo(0, 0);
             return;
         }
-        setLoading(true);
+
         getData(nextPage, debouncedSearch);
         setCurrentPage(nextPage);
         window.scrollTo(0, 0);
@@ -108,8 +108,8 @@ export default function SaldoSiswaUI() {
     };
 
     // ── Loading state ──
-    if (loading && !data[cacheKey]) {
-        return <LoadingComponent />;
+    if (isLoading && !data[cacheKey]) {
+        return null;
     }
 
     const currentData = data[cacheKey] || [];

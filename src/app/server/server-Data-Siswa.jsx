@@ -8,7 +8,6 @@ export async function AmbilDataSiswa(inputUser, curentPage, itemPerPage) {
     const from = (curentPage - 1) * itemPerPage
     const to = curentPage * itemPerPage - 1
 
-    // Query data with count
     let query = supabase.from('saldo_users').select('*', { count: 'exact' })
 
     if (inputUser) {

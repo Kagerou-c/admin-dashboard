@@ -7,7 +7,7 @@ import IncomeExpenseChart from "./income-expense-chart";
 import { useEffect, useState } from "react";
 import { UsersRound, Wallet, TrendingUp, TrendingDown } from "lucide-react";
 import card from "../components/card";
-import LoadingComponent from "../motion-component/loading";
+import { useLoading } from "../Hooks/use-loading";
 import '../chart.css'
 import { motion } from "framer-motion";
 import { TestingAmbilData } from "../server/server-Data";
@@ -15,18 +15,21 @@ import { TestingAmbilData } from "../server/server-Data";
 export default function Chart() {
     const [data, setData] = useState(null)
     const { Card, CardContent, CardHeder } = card
+    const { isLoading, startLoading, stopLoading } = useLoading()
 
     useEffect(() => {
         async function getData() {
+            startLoading()
             const rawdata = await TestingAmbilData()
             const newData = chartData(rawdata)
             setData(newData)
+            stopLoading()
         }
         getData()
     }, [])
 
-    if (!data)
-        return <LoadingComponent />;
+    if (!data || isLoading)
+        return null;
 
     const {
         month,

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 
-export default function LoadingComponent(){
+export default function LoadingComponent({isLoading}){
+    if(!isLoading) return null
+    
     const animate = {
         scale:[1, 1.8, 1.8, 1],
         opacity :[0.6, 1, 1, 0.6]
@@ -21,8 +23,8 @@ export default function LoadingComponent(){
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        zIndex: 9999,
     }
 
     return(
