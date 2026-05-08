@@ -1,5 +1,16 @@
 
+import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata = {
   title: "Dashboard Bank Mini SMK Budi Bhakti ",
@@ -13,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -24,7 +35,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body>
+      <body className="antialiased">
         <main>
           {children}
         </main>
