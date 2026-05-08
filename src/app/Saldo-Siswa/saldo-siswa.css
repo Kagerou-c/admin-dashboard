@@ -196,7 +196,7 @@
 
 /* ── Cell Badges ── */
 .nik-badge {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 0.82rem;
     background: #f3f4f6;
     padding: 4px 10px;
